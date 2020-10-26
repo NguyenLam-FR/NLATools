@@ -1,0 +1,22 @@
+<div *ngIf="isDisplay();else contenu_pas_bon"> 
+  <mat-button-toggle-group name="fontStyle" aria-label="Font Style">
+    <mat-button-toggle value="bold">
+      <a class="col-sm-1" [routerLink]="['/applicationIdentity',id]">{{ name }} <img src="../assets/images/appId.svg" width="25px" height="20px" /></a>
+    </mat-button-toggle>
+    <mat-button-toggle value="italic">
+      <a class="col-sm-1" [routerLink]="['/applicationActionPlan',id,1]"><img src="../assets/images/castLogo.png" width="100px" height="23px" /></a>
+    </mat-button-toggle>
+    <mat-button-toggle value="underline">
+      <a class="col-sm-1" [routerLink]="['/applicationActionPlan',id,1]"><img src="../assets/images/checkmarxLogo.png" width="100px" height="23px" /></a>
+    </mat-button-toggle>
+    <mat-button-toggle value="underline">
+      <a class="col-sm-1" [routerLink]="['/applicationActionPlan',id,1]"><img src="../assets/images/sonarqubeLogo.png" width="100px" height="23px" /></a>
+    </mat-button-toggle>
+    <mat-button-toggle value="underline">
+      <a class="col-sm-1" [routerLink]="['/applicationActionPlan',id,1]"><img src="../assets/images/actionPlanCast.svg" width="25px" height="20px" /></a>
+    </mat-button-toggle>
+  </mat-button-toggle-group>
+</div>
+<ng-template #contenu_pas_bon> 
+</ng-template>
+<br>

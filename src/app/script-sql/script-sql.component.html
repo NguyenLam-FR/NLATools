@@ -1,0 +1,291 @@
+<h2>
+	<img src="../assets/images/sql.svg" width="30px" height="30px" />
+       Scripts SQL</h2>
+<ul class="list-group">
+       <li class="list-group-item active">Mise &agrave; jour du path (chemin vers deploy) dans les bases CAST</li>
+       <li class="list-group-item">
+         update basecss_central.dss_objects set object_full_name= replace(object_full_name, '\basecss\SAP', '') <br>
+              update basecss_local.refpath set path= replace(path, '\basecss\SAP', '') <br>
+              update basecss_local.cdt_objects set object_fullname= replace(object_fullname, '\basecss\SAP', '') <br>
+              update basecss_local.objfulnam set fullname = replace(fullname, '\basecss\SAP', '') <br>
+              update basecss_local.cdt_objects set object_name = replace(object_name, '\basecss\SAP', '') <br>
+              update basecss_central.dss_source_texts set source_path = replace(source_path, '\basecss\SAP', '') <br>
+              update basecss_local.dss_code_sources set source_path = replace(source_path, '\basecss\SAP', '') <br>
+              update basecss_local.dss_code_sources set source_path = replace(source_path, '\basecss\sap', '') <br>
+              update basecss_local.dss_objects set object_full_name = replace(object_full_name, '\basecss\SAP', '') <br>
+              update basecss_local.keys set keynam = replace(keynam, '\basecss\SAP', '') <br>
+              update basecss_local.objdsc set infval = replace(infval, '\basecss\SAP', '') <br>
+              update basecss_local.objdsc set infval = replace(infval, '\basecss\sap', '') <br>
+              update basecss_local.objects set idnam = replace(idnam, '\basecss\SAP', '') <br>
+              update basecss_local.objects set idshortnam = replace(idshortnam, '\basecss\SAP', '') <br>
+              update basecss_local.refpath set path = replace(path, '\basecss\SAP', '') <br>
+              update basecss_local.refpath set path = replace(path, '\basecss\sap', '') <br>
+       </li>
+     </ul>
+<br>
+<br>
+<ul class="list-group">
+       <li class="list-group-item active">Rattachement de snapshots &agrave; la suite d'une migration</li>
+       <li class="list-group-item">
+Il faut passer les requetes suivantes sur la base centrale :<br>
+Ou 3 est l'ID de l'ancienne application<br>
+Ou 188152 est l'ID de la nouvelle application<br>
+update basecss_central.dss_metric_results set object_id = 188152 where object_id = 3<br>
+update basecss_central.dss_metric_values set object_id = 188152 where object_id = 3<br>
+update basecss_central.dss_module_links set object_id = 188152 where object_id = 3<br>
+update basecss_central.dss_portf_tree set app_id = 188152 where app_id = 3<br>
+update basecss_central.dss_func_module_links set object_id = 188152 where object_id = 3<br>
+update basecss_central.dss_link_info set previous_object_id = 188152 where previous_object_id = 3<br>
+update basecss_central.dss_snapshot_info set object_id = 188152 where object_id = 3<br>
+</li></ul>
+<br>
+<ul class="list-group">
+       <li class="list-group-item active">Liste des procédures MDLJ sur une base postgreSQL</li>
+       <li class="list-group-item">
+SELECT routines.routine_name, parameters.data_type, parameters.ordinal_position, routines.specific_schema<br>
+FROM information_schema.routines<br>
+    LEFT JOIN information_schema.parameters ON routines.specific_name=parameters.specific_name<br>
+WHERE --routines.specific_schema='basecss_local'<br>
+routines.routine_name like 'mdlj%'<br>
+and parameters.ordinal_position = 1<br>
+ORDER BY routines.specific_schema<br>
+</li></ul>
+<br>
+<ul class="list-group">
+       <li class="list-group-item active">Exclusion de code des modules dans CMS</li>
+       <li class="list-group-item">
+update CTT_OBJECT_APPLICATIONS<br>
+set PROPERTIES = 1<br>
+where OBJECT_ID in (select OBJECT_ID<br>
+from CSV_FILE_OBJECTS<br>
+where lower(FILE_PATH) like '%tiny_mce%')<br>
+</li></ul>
+<br>
+<ul class="list-group">
+       <li class="list-group-item active">Liste des applications réalisées depuis le 1er janvier 2018</li>
+       <li class="list-group-item">
+Select distinct ap.name,to_char(s.date_snapshot,'DD/MM/YYYY') dsnapshot, s.last_version_analyzed, am.url<br>
+				from benchmark.application ap, benchmark.snapshot s, benchmark.application_man am<br>
+				where s.id_application=ap.id<br>
+				and am.name=ap.name<br>
+				and date_snapshot > to_timestamp('01/01/2018','DD/MM/YYYY') <br>
+				and s.etat_workflow=3<br>
+				order by 1, 2 desc<br>
+</li></ul>
+<br>
+<ul class="list-group">
+       <li class="list-group-item active">LoC par modules et par snapshot</li>
+       <li class="list-group-item">
+SELECT snapshot_id, dob.Object_name, dmr.Metric_num_value AS LOC,<br>
+       CASE WHEN dob.object_type_id =  -102   THEN 'APPLICATION LEVEL'<br>
+            WHEN dob.object_type_id = 20000 THEN 'MODULE LEVEL'<br>
+            WHEN dob.object_type_id in (886453,886291, 889716, 896001)  THEN 'FILE LEVEL' -- .html .jsp .ts .js<br>
+            ELSE 'TECHNICAL CAST OBJESCT'<br>
+       END AS lEVEL<br>
+    FROM dss_metric_results dmr<br>
+    join  dss_objects dob<br>
+    on dob.object_id = dmr.object_id<br>
+    where metric_id = 10151<br>
+    group by snapshot_id,  dob.Object_name, dmr.Metric_num_value, dob.object_type_id<br>
+    order by snapshot_id , dob.Object_name, dmr.Metric_num_value, dob.object_type_id<br>
+</li></ul>
+<br>
+<ul class="list-group">
+       <li class="list-group-item active">Définition de modules par explicit content - Template</li>
+       <li class="list-group-item">
+ Delete from §CI_OBJECTS_SET Where SET_NAME = '$(ModuleName)'<br>
+/<br>
+Insert Into §CI_OBJECTS_SET(SET_NAME, OBJECT_ID, ERROR_ID)<br>
+select distinct '$(ModuleName)', OBJECT_ID, 0<br>
+from §csv_file_objects<br>
+where (<br>
+    file_path LIKE replace('\%XXXX\%', '\','\\') <br>
+ )<br>
+union<br>
+select distinct '$(ModuleName)', p.IdKey, 0<br>
+from §Keys p, §KeyPar kp, §Keys k, §ObjFilRef r, §RefPath rp<br>
+where  (<br>
+   rp.Path LIKE replace('%\XXXX\%', '\','\\') <br>
+ )<br>
+and r.IdFilRef = rp.IdFilRef<br>
+and k.IdKey = r.IdObj<br>
+and kp.IdKey = k.IdKey<br>
+and p.IdKey = kp.IdParent<br>
+and p.ObjTyp = 99 /*Java Package*/<br>
+/<br>
+</li></ul>
+<br>
+<ul class="list-group">
+       <li class="list-group-item active">Liste des transactions avec CC, FP, LoC</li>
+       <li class="list-group-item">
+select CDTO.form_id,  TX.object_name , DMR.metric_char_value Details, <br>
+DMR.metric_num_value FP, sum(DA.CYCLOMATIC) Total_CC, sum(DA.CODE_LINES) Total_Code_Lines, sum(DA.H_VOLUME) Total_Halstead_Volume<br>
+from<br>
+dss_links lk, <br>
+dss_objects ob, <br>
+dss_objects TX,<br>
+DSS_TRANSLATION_TABLE TT, <br>
+DSS_TRANSLATION_TABLE TTX, <br>
+ned_local.DSS_OBJECTS O, <br>
+ned_local.DSSAPP_ARTIFACTS DA, <br>
+DSS_METRIC_RESULTS DMR ,<br>
+ned_local.dss_transaction CDTO<br>
+where <br>
+CDTO.object_id=TTX.site_object_id and TTX.object_id=tx.object_id and<br>
+DMR.SNAPSHOT_ID=(select max(snapshot_id) from DSS_SNAPSHOTS) and<br>
+DMR.metric_char_value != 'NULL' and<br>
+TX.object_id=DMR.object_id and<br>
+TT.SITE_OBJECT_ID=O.OBJECT_ID and <br> 
+O.OBJECT_ID=DA.OBJECT_ID and<br>
+ob.object_id=TT.object_id and<br>
+lk.previous_object_id = TX.object_id and lk.next_object_id = ob.object_id and lk.link_type_id=11003<br>
+group by CDTO.form_id,TX.object_name, DMR.metric_char_value, DMR.metric_num_value<br>
+order by 1<br>
+</li></ul>
+<br>
+<ul class="list-group">
+       <li class="list-group-item active">Liste des rules/notes/violations/critere technique/facteurs de sante</li>
+       <li class="list-group-item">
+SELECT DISTINCT( metric_id )                mtid,<br>
+               critical,<br>
+               b_criterion_name,<br>
+               t_criterion_name,<br>
+               m_weight                     weight,<br>
+               metric_name                  mtname,<br>
+               note                         mark,<br>
+               SUM(detail)                  checkkO,<br>
+               ( SUM(total) - SUM(detail) ) checkOK,<br>
+               SUM(total)                   Total,<br>
+               note_ct,<br>
+               weight_ct,<br>
+               critical_ct,<br>
+               b_criterion_name,<br>
+               metric_description,<br>
+               b_criterion_id,<br>
+               t_criterion_id,<br>
+               bc_note<br>
+FROM   (SELECT DISTINCT( CQT.metric_name ),<br>
+                       CQT.metric_id,<br>
+                       CQT.m_weight,<br>
+                       CQT.t_criterion_name,<br>
+                       CQT.b_criterion_name,<br>
+                       DMR_DTAIL.metric_num_value<br>
+                       Detail,<br>
+                       Round(Cast(DMR_NOTE.metric_num_value AS DECIMAL), 2) note<br>
+                       ,<br>
+                       DMTT.metric_critical<br>
+                       Critical,<br>
+                       DMR_TOTAL.metric_num_value<br>
+                       Total,<br>
+                       DMR_CT.metric_num_value<br>
+                       note_ct,<br>
+                       CQT.t_weight<br>
+                       weight_ct,<br>
+                       CQT.t_crit<br>
+                       critical_ct<br>
+                              ,<br>
+                       metric_description,<br>
+                       b_criterion_id,<br>
+                       t_criterion_id,<br>
+                       DMR_BC.metric_num_value<br>
+                       bc_note<br>
+        FROM   csv_quality_tree CQT,<br>
+               dss_metric_results DMR_DTAIL,<br>
+               dss_metric_results DMR_NOTE,<br>
+               dss_metric_results DMR_TOTAL,<br>
+               dss_metric_results DMR_CT,<br>
+               dss_metric_results DMR_BC,<br>
+               dss_metric_type_trees DMTT,<br>
+               dss_metric_types DMT<br>
+        WHERE  DMR_BC.metric_id = CQT.b_criterion_id<br>
+               AND DMR_BC.metric_value_index = 0<br>
+               AND DMR_BC.object_id =  < application_id ><br>
+               AND DMR_BC.snapshot_id = < snapshot_id ><br>
+               AND CQT.metric_id = dmr_Dtail.metric_id<br>
+               AND CQT.metric_id = DMTT.metric_id<br>
+               AND DMR_DTAIL.snapshot_id = < snapshot_id ><br>
+               AND DMR_DTAIL.metric_value_index = 1<br>
+               AND CQT.metric_id = DMR_TOTAL.metric_id<br>
+               AND DMR_TOTAL.snapshot_id = < snapshot_id ><br>
+               AND DMR_TOTAL.metric_value_index = 2<br>
+               AND DMR_DTAIL.object_id = DMR_TOTAL.object_id<br>
+               AND CQT.metric_id = DMR_NOTE.metric_id<br>
+               AND DMR_NOTE.snapshot_id = < snapshot_id ><br>
+               AND DMR_NOTE.metric_value_index = 0<br>
+               AND dmr_note.object_id = < application_id ><br>
+               AND dmr_Dtail.object_id IN (SELECT DISTINCT( dss_ml2.module_id )<br>
+                                           FROM   dss_module_links dss_ml2<br>
+                                           WHERE  dss_ml2.object_id = 3)<br>
+               AND CQT.b_criterion_id IN ( 60011, 60012, 60013, 60014,<br>
+                                           60016, 60017 )<br>
+               AND DMR_CT.object_id = < application_id ><br>
+               AND DMR_CT.metric_value_index = 0<br>
+               AND DMR_CT.snapshot_id = < snapshot_id ><br>
+               AND DMR_CT.metric_id = CQT.t_criterion_id<br>
+               AND DMT.metric_id = DMR_DTAIL.metric_id)AS foo<br>
+GROUP  BY metric_id,<br>
+          metric_name,<br>
+          note,<br>
+          critical,<br>
+          t_criterion_name,<br>
+          m_weight,<br>
+          b_criterion_name,<br>
+          note_ct,<br>
+          weight_ct,<br>
+          critical_ct,<br>
+          metric_description,<br>
+          b_criterion_id,<br>
+          t_criterion_id,<br>
+          bc_note<br>
+ORDER  BY 2 DESC,<br>
+          5 DESC,<br>
+          7 DESC<br>
+</li></ul>
+<br>
+<ul class="list-group">
+       <li class="list-group-item active">Isolation des micro service (1 projet => 1 base de données)</li>
+       <li class="list-group-item">
+select t.object_name, j.object_fullname, rp2.path<br>
+--select j.object_id, t.object_id <br>
+from ctv_guid_objects t, ctv_links cl, ObjFilRef ofr, RefPath rp, ctv_guid_objects j, objfilref ofr2, refpath rp2<br>
+where t.object_id = cl.called_id <br>
+and t.object_type_str = 'Table'<br>
+and ofr.idobj  = t.object_id <br>
+and rp.idfilref = ofr.idfilref <br>
+and lower(rp.path) like lower('C:\WEBI\AipNode\data\deploy\main_sources\home-weather-code\%') escape ''<br>
+and j.object_id =cl.caller_id <br>
+and ofr2.idobj = j.object_id <br>
+and ofr2.idfilref =rp2.idfilref <br>
+and lower(rp2.path) not like lower('C:\WEBI\AipNode\data\deploy\main_sources\home-weather-code\%') escape ''<br>
+</li></ul>
+<br> 
+<ul class="list-group">
+       <li class="list-group-item active">Les regles de distributions par catégorie (L,M,C,HC)</li>
+       <li class="list-group-item">
+Select CASE WHEN (dmr.metric_value_index=-4) THEN 'l_artefact' ELSE CASE WHEN (dmr.metric_value_index=-3) THEN 'm_artefact' ELSE  CASE WHEN (dmr.metric_value_index=-2) THEN 'h_artefact' ELSE 'vh_artefact' <br>
+END END END severite ,sum(dmr.metric_num_value) valeur,dmr.metric_id metric_id from basecss_central.dss_metric_results dmr, 
+basecss_central.DSS_SNAPSHOTS DS, basecss_central.dss_links dl1, basecss_central.dss_links dl2 where dmr.SNAPSHOT_ID = DS.SNAPSHOT_ID 
+and dmr.object_id = dl1.next_object_id and dl1.link_type_id = 1 and dl2.link_type_id = 1 and dl1.previous_object_id = dl2.next_object_id 
+and dl2.previous_object_id in (select object_id from  basecss_central.dss_objects where object_type_id = -102 )<br>
+and dmr.metric_id in (65501,65350,66015,65105,66021,66020,65701,65801,66010) and dmr.metric_value_index in (-4,-3,-2,-1) 
+group by dmr.metric_id, dl2.previous_object_id, DS.SNAPSHOT_NAME,dmr.metric_value_index,DS.SNAPSHOT_ID;<br>
+</li></ul>
+<br>
+<ul class="list-group">
+       <li class="list-group-item active">CC par modules</li>
+       <li class="list-group-item">
+select CASE WHEN (dmr.metric_value_index=-4) THEN 'l_artefact' ELSE CASE WHEN (dmr.metric_value_index=-3) THEN 'm_artefact' ELSE CASE WHEN (dmr.metric_value_index=-2) THEN 'h_artefact' ELSE 'vh_artefact'<br>
+END END END severite ,sum(dmr.metric_num_value) valeur,dmr.metric_id metric_id, do2.object_name <br>
+from basecss_central.dss_metric_results dmr, basecss_central.DSS_SNAPSHOTS DS, basecss_central.dss_links dl1, <br>
+basecss_central.dss_links dl2, basecss_central.dss_links dl3, basecss_central.dss_objects do2 <br>
+where dmr.SNAPSHOT_ID = DS.SNAPSHOT_ID <br>
+and dmr.object_id = dl1.next_object_id <br>
+and dl3.link_type_id = 1 <br>
+and dl1.previous_object_id = dl2.next_object_id <br>
+and dl2.previous_object_id = dl3.next_object_id <br>
+and dl3.previous_object_id in (select object_id from basecss_central.dss_objects where object_type_id = -102 )<br>
+and do2.object_id = dl2.previous_object_id <br>
+and dmr.metric_id in (65501) <br>
+and dmr.metric_value_index in (-4,-3,-2,-1) <br>
+group by dmr.metric_id, do2.object_name, DS.SNAPSHOT_NAME,dmr.metric_value_index,DS.SNAPSHOT_ID;<br>
+</li></ul>

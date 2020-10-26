@@ -1,0 +1,62 @@
+
+<div class="col-xs-12 ">
+	<div class="col-sm-12 headerTab titre_section">
+		<div class="col-sm-12 text-left"></div>
+    </div>
+	<div class="col-sm-12 headerTabnoradius surligneLeger">
+	  <div class="col-sm-1">Date snapshot</div>
+	  <div class="col-sm-1"><button class="btn btn-primary"
+        (click)="onFetch()">Etat</button></div>
+	  <div class="col-sm-2">Version</div>
+	  <div class="col-sm-1">Corrected</div>
+	  <div class="col-sm-1">New </div>
+  	  <div class="col-sm-1">Still</div>
+	  <div class="col-sm-1">Total</div>
+	  <div class="col-sm-1">Del.</div>
+	  <div class="col-sm-1">Orph.</div>
+	  <div class="col-sm-1">Exc. Orph.</div>
+	  <div class="col-sm-1">Exc.</div>
+	</div>
+
+	<div class="list-group cadreApp350">
+	  	<app-single-application-action-plan-snapshot 
+	  	*ngFor="let snapshot of snapshotsHTML; let i = index"
+	  	[last_version_analyzed]="snapshot.last_version_analyzed" 
+	  	[etat_workflow]="snapshot.etat_workflow" 
+	  	[date_snapshot]="snapshot.date_snapshot"
+	  	[nb_total]="snapshot.nb_total"
+	  	[nb_corrected]="snapshot.nb_corrected"
+	  	[nb_new]="snapshot.nb_new"
+	  	[nb_still_violation]="snapshot.nb_still_violation"
+	  	[obj_deleted]="snapshot.obj_deleted"
+	  	[exclusion_orphelin]="snapshot.exclusion_orphelin"
+	  	[nb_orphelin]="snapshot.nb_orphelin"
+	  	[plan_action_orphelin]="snapshot.plan_action_orphelin"
+	  	[loc]="snapshot.loc"
+	  	[id_snapshot]="snapshot.id_snapshot"
+	  	[id_app]="snapshot.id"
+		[cast_version]="snapshot.cast_version"
+		[last_update]="snapshot.last_update"
+		[id_snapshot_cast]="snapshot.id_snapshot_cast"
+		[comment]="snapshot.comment"
+		[couleurFond]="snapshot.couleurFond"
+		[indexOfApplication]="i"	  
+	  	>
+	  	</app-single-application-action-plan-snapshot>
+	</div>
+
+	<div class="col-sm">
+  	  <button class="col-sm-4" mat-raised-button color="primary" (click)="purgeBaseCentral()" >Purge de la base central  <mat-icon>offline_pin</mat-icon></button>
+	  <button class="col-sm-4" mat-raised-button color="primary" (click)="purgeBaseCentral()" >Charger central  <mat-icon>arrow_circle_down</mat-icon></button>
+	  <button class="col-sm-4" mat-raised-button color="primary" (click)="purgeBaseCentral()" >Dump CSS  <mat-icon>save</mat-icon></button>
+	</div>	
+	<div class="col-sm">
+		<span class="font_legend"> 
+			<i class="fas fa-circle corrected_color "></i> Corrected  
+			<i class="fas fa-circle deleted_color"></i> Deleted 
+			<i class="fas fa-circle new_color "></i> New 
+			<i class="fas fa-circle still_violation_color "></i> Still violation
+		</span>
+      <div id="columnChartPA" style="min-width: 510px; max-width: 100%; height: 300px; margin: 0 auto"></div>
+	</div>
+   </div>

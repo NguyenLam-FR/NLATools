@@ -1,0 +1,9 @@
+<div class="text-center">
+<h4>Vous êtes sur le point de supprimer le snapshot suivant:<br>
+    ID:{{ id_snapshot }} <br>
+    Last_version_analyzed: {{ last_version_analyzed }}<br>
+    date_snapshot: {{ date_snapshot }}<br></h4>
+<h4>Cette action est irréversible, veuillez confirmer votre action</h4>
+<button class="btn btn-danger" (click)="deleteSnapshotForever()">Oui je veux supprimer le snapshot</button>&nbsp;&nbsp;
+<button class="btn btn-primary" (click)="onNoClick()">Fermer la fenêtre sans supprimer le snapshot</button>
+</div>

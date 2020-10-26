@@ -1,0 +1,89 @@
+<h2>
+  <img 	src="../assets/images/rules.svg" width="30px" height="30px" />
+  Les règles qualité</h2>
+<div class="col-sm-12">
+  <mat-grid-list cols="14" rowHeight="100px">
+    <mat-grid-tile [colspan]=4 >
+        <mat-form-field>
+            <mat-label>Filter</mat-label>
+            <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium">
+          </mat-form-field>
+    </mat-grid-tile>
+  </mat-grid-list>
+    <table mat-table [dataSource]="dataSourcePA" matSort class="mat-elevation-z8">
+    <ng-container matColumnDef="metric_id">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> metric_id </th>
+        <td mat-cell *matCellDef="let element"> {{element.metric_id}} </td>
+      </ng-container>
+      
+      <ng-container matColumnDef="id_outil">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Outil </th>
+        <td mat-cell *matCellDef="let element">
+          <p *ngIf="element.id_outil===1" >
+            <img src="../assets/images/castLogo_ico.PNG" width="25px" height="25px" /></p>
+          <p *ngIf="element.id_outil===2" >
+            <img src="../assets/images/cmarx.PNG" width="25px" height="25px" /></p>
+          <p *ngIf="element.id_outil===3" >
+            <img src="../assets/images/sonar.PNG" width="25px" height="25px" /></p>
+         </td>
+      </ng-container>
+      
+      <ng-container matColumnDef="severity">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Impact </th>
+        <td mat-cell *matCellDef="let element"> 
+          <p *ngIf="element.severity==='NOT CRITICAL'" >
+            <img src="../assets/images/cast_NOT_CRITICAL.PNG" width="25px" height="25px" /></p>
+          <p *ngIf="element.severity==='CRITICAL'" >
+            <img src="../assets/images/cast_CRITICAL.PNG" width="25px" height="25px" /></p>
+          <p *ngIf="element.severity==='MEDIUM'" >
+            <img src="../assets/images/cx_MEDIUM.PNG" width="25px" height="25px" /></p>
+          <p *ngIf="element.severity==='INFO'" >
+            <img src="../assets/images/cx_INFO.PNG" width="25px" height="25px" /></p>
+          <p *ngIf="element.severity==='LOW'" >
+            <img src="../assets/images/cx_LOW.PNG" width="25px" height="25px" /></p>
+          <p *ngIf="element.severity==='HIGH'" >
+            <img src="../assets/images/cx_HIGH.PNG" width="25px" height="25px" /></p>
+          <p *ngIf="element.severity==='MAJOR'" >
+            <img src="../assets/images/sonar_MAJOR.PNG" width="25px" height="25px" /></p>
+          <p *ngIf="element.severity==='BLOCKER'" >
+            <img src="../assets/images/sonar_BLOCKER.PNG" width="25px" height="25px" /></p>
+                
+            </td>
+      </ng-container>
+
+      <ng-container matColumnDef="metric_description">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> libellé </th>
+        <td mat-cell *matCellDef="let element"> {{element.metric_description}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="hf">
+	<th mat-header-cell *matHeaderCellDef mat-sort-header> Impact </th>
+	<td mat-cell *matCellDef="let element"> {{element.hf}}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="date_premier">
+	<th mat-header-cell *matHeaderCellDef mat-sort-header> date début </th>
+	<td mat-cell *matCellDef="let element"> {{element.date_premier}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="date_fin">
+	<th mat-header-cell *matHeaderCellDef mat-sort-header> date fin </th>
+	<td mat-cell *matCellDef="let element"> {{element.date_fin}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="nb_application">
+	<th mat-header-cell *matHeaderCellDef mat-sort-header> Apps </th>
+	<td mat-cell *matCellDef="let element"> {{element.nb_application}} </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumnsPA"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumnsPA;"></tr>
+
+</table>
+<mat-paginator [pageSizeOptions]="[10, 20, 50, 100]" showFirstLastButtons></mat-paginator>
+
+</div>
+<div class="col-sm-12">
+  <app-rules-referentiel-partie-droite>
+  </app-rules-referentiel-partie-droite>
+</div>

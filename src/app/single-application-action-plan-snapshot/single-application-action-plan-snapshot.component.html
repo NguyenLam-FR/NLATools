@@ -1,0 +1,75 @@
+    <mat-accordion>
+      <mat-expansion-panel 
+      class="{{couleurFond}}" 
+      >
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <div class="col-sm-12">
+              <div class="col-sm-1">{{ date_snapshot }}</div>
+              <div class="col-sm-1"><img src="../assets/images/etat_{{etat_workflow }}.PNG" width="25px" height="20px" /></div>
+              <div class="col-sm-2">
+                {{ last_version_analyzed }}
+                <mat-icon 
+                  *ngIf="!hidden"
+                  matTooltip="{{comment}}"
+                  matTooltipPosition="left"  
+                  matTooltipHideDelay="500"
+                  aria-hidden="false" aria-label="Example home icon">comment</mat-icon>
+              </div>
+              <div class="col-sm-1 border-left">{{ nb_correctedHTML }}</div>
+              <div class="col-sm-1">{{ nb_newHTML }}</div>
+              <div class="col-sm-1">{{ nb_still_violationHTML }}</div>
+              <div class="col-sm-1">{{ nb_totalHTML }}</div>
+              <div class="col-sm-1 border-left">{{ obj_deletedHTML }}</div>
+              <div class="col-sm-1">{{ plan_action_orphelinHTML }}</div>
+              <div class="col-sm-1">{{ exclusion_orphelinHTML}}</div>
+              <div class="col-sm-1">{{ nb_orphelinHTML}}</div>
+          </div>
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <div class="col-sm-12">
+        <div class="col-sm-1"></div>
+        <div class="col-sm-1"></div>
+        <div class="col-sm-2"></div>
+        <div class="col-sm-1"><p [ngClass]="{'affichecommentaire': hiddenCorrected === true }" (click)="openDialog(id_app, id_snapshot, 'CORRECTED')"><mat-icon aria-hidden="false" aria-label="Example home icon">open_in_new</mat-icon></p></div>
+        <div class="col-sm-1"><p [ngClass]="{'affichecommentaire': hiddenNew === true }" (click)="openDialog(id_app, id_snapshot, 'NEW')"><mat-icon aria-hidden="false" aria-label="Example home icon">open_in_new</mat-icon></p></div>
+        <div class="col-sm-1"><p [ngClass]="{'affichecommentaire': hiddenStillViolation === true }" (click)="openDialog(id_app, id_snapshot, 'STILL_VIOLATION')"><mat-icon aria-hidden="false" aria-label="Example home icon">open_in_new</mat-icon></p></div>
+        <div class="col-sm-1"><p [ngClass]="{'affichecommentaire': hiddenTotal === true }" (click)="openDialog(id_app, id_snapshot, 'TOTAL')"><mat-icon aria-hidden="false" aria-label="Example home icon">open_in_new</mat-icon></p></div>
+        <div class="col-sm-1"></div>
+        <div class="col-sm-1"></div> 
+        <div class="col-sm-1"></div>
+        <div class="col-sm-1"></div>
+    </div>
+      <div class="col-sm-6">
+        <mat-list role="list">
+          <mat-list-item role="listitem">LoC: {{ loc }}</mat-list-item>
+          <mat-list-item role="listitem">Snapshot ID dans la benchmark: {{ id_snapshot }}</mat-list-item>
+          <mat-list-item role="listitem">Snapshot ID dans la base central CAST: {{ id_snapshot_cast }}</mat-list-item>
+          
+          <mat-list-item role="listitem">Version CAST AIP: {{ cast_version }}</mat-list-item>
+        </mat-list>
+      </div>
+      <div class="col-sm-6">
+        <mat-list role="list">
+          <mat-list-item role="listitem">Date snapshot (dans la base central): {{ date_snapshot }}</mat-list-item>
+          <mat-list-item role="listitem">
+            Date d'insert dans la benchmark: {{ last_update }}
+            
+         
+            
+          </mat-list-item>
+          <mat-list-item role="listitem">
+            Commentaire: 
+            <mat-form-field appearance="outline">
+              <input matInput (change)="changement()" [formControl]="commentaireInput" placeholder="saisir le commentaire ici">
+            </mat-form-field>
+            <p (click)="deleteComment()"><mat-icon aria-hidden="false" aria-label="Supprimer le commentaire">cancel</mat-icon></p>
+          </mat-list-item>
+          <mat-list-item role="listitem">
+            <button mat-raised-button color="warn" (click)="openDialogDeleteSnapshot()">Supprimer le snapshot</button>
+            
+          </mat-list-item>
+        </mat-list>
+      </div>
+      </mat-expansion-panel>
+    </mat-accordion>

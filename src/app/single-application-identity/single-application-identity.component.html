@@ -1,0 +1,60 @@
+<div class="col-sm-12">
+<div class="col-sm-5 cadrefin" >
+    <div class="card-body">
+      <div class="cadrefinTitre">Techno AIP</div>
+      <p>Techno: {{ application.techno }}</p>
+      <p>Central base : {{ application.central_base }}</p>
+      <p>Version AIP: {{ application.cast_version }}</p>
+      <p>Dernière version analysée: {{ application.last_version_analyzed }}</p>
+      <p>URL : {{ application.url }}</p>
+      <a href="#" class="btn btn-primary">Go somewhere</a>
+    </div>
+  </div>
+  <div class="col-sm-3 cadrefin" > 
+    <div class="card-body">
+      <div class="cadrefinTitre">Facteurs de santé</div>
+      <p>TQI: {{ application.tqi }}</p>
+      <p>Sécurité: {{ application.secu}}</p>
+      <p>Transférabilité: {{ application.transf}}</p>
+      <p>Robustesse: {{ application.robu}}</p>
+      <p>Efficience: {{ application.efficiency}}</p>
+      <p>Evolutivité: {{ application.changeability}}</p>
+      <a href="#" class="btn btn-primary">Go somewhere</a>
+    </div>
+  </div>
+  <div class="col-sm-3 cadrefin" >
+    <div class="card-body">
+      <div class="cadrefinTitre">Volume</div>
+      <p>loc : {{ application.loc }}</p>
+      <p>cc : {{ application.cc }}</p>
+      <a href="#" class="btn btn-primary">Go somewhere</a>
+    </div>
+  </div>
+</div>
+<div class="col-sm-6 cadrefin" >
+
+<div class="card-body">
+  <div class="cadrefinTitre">Liste des extensions <mat-form-field>
+    <mat-label>Filter</mat-label>
+    <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium">
+  </mat-form-field></div>
+
+
+<table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+  
+	<ng-container matColumnDef="label">
+	  <th mat-header-cell *matHeaderCellDef mat-sort-header> Nom </th>
+      <td mat-cell *matCellDef="let element"> {{element.label}} </td>
+	</ng-container>
+
+	<ng-container matColumnDef="version">
+		<th mat-header-cell *matHeaderCellDef mat-sort-header> Version </th>
+		<td mat-cell *matCellDef="let element"> {{element.version}} </td>
+	</ng-container>
+  
+	<tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+	<tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+  <mat-paginator [pageSizeOptions]="[10, 20, 50, 100]" showFirstLastButtons></mat-paginator>
+</div>
+</div>

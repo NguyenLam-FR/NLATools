@@ -1,0 +1,405 @@
+/* You can add global styles to this file, and also import other style files */
+.background-etat3{
+ background-color:rgba(0, 176, 80, 0.20);
+}
+.cadrefin{
+  border: 1px solid #D6D3D3;
+  border-radius: 1rem;
+  padding: 1rem;
+  margin: 1rem;
+}
+
+.cadrefinTitre{
+  border-bottom: 1px solid #D6D3D3;
+  font-weight: bold;
+}
+
+.background-etat2{
+ background-color:rgba(255, 255, 0, 0.15);
+}
+
+.background-etat1{
+ background-color:rgba(228, 108, 10, 0.15);
+}
+/* Min justice Specifique*/
+.homepage-tab{
+	font-size: 16px;
+	padding: 5px;
+}
+
+.align-left{
+	text-align:left;
+}
+
+.align-right{
+	text-align:right;
+}
+
+.align-center{
+	text-align:center;
+}
+
+.surligneLeger {
+	font-weight:bold;
+	font-size: 14px;
+}
+
+
+.surligne {
+	font-weight:bold;
+	font-size: 18px;
+}
+.width-full{
+	width: 100%;
+}
+
+.border-bottom{
+	border-bottom:2px solid #000000;
+}
+
+.border-left{
+	border-left:2px solid #dedede;
+}
+
+.border-left-black{
+	border-left:2px solid #000000;
+}
+
+.border-right{
+	border-right:2px solid #dedede;
+}
+
+.border-black {
+	border-color:black;
+}
+.border-left-leger{
+	border-left:1px solid #dedede;
+}
+.cadreSansBord{
+ padding: 15px;
+}
+
+.headerTabCX{
+ border-top-left-radius: 5px 5px;
+ border-top-right-radius: 5px 5px;
+ padding:5px;
+ background-color:#0D540A;
+ color:#FFFFFF;
+}
+.headerTabSonar{
+ border-top-left-radius: 5px 5px;
+ border-top-right-radius: 5px 5px;
+ padding:5px;
+ background-color:#4C9BD6;
+ color:#FFFFFF;
+}
+
+.headerTabnoradiusCX{
+ padding:5px;
+ background-color:#0D540A;
+ color:#FFFFFF;
+}
+
+.headerTabnoradiusSonar{
+ padding:5px;
+ background-color:#4C9BD6;
+ color:#FFFFFF;
+}
+
+.headerTab{
+ border-top-left-radius: 5px 5px;
+ border-top-right-radius: 5px 5px;
+ padding:5px;
+ background-color:#000000;
+ color:#FFFFFF;
+}
+
+.headerTabnoradius{
+ padding:5px;
+ background-color:#000000;
+ color:#FFFFFF;
+}
+
+.cadreApp700{
+ border-width:2px;
+ border-style:solid;
+ border-color:black;
+ height: auto;
+ max-height:680px;
+ overflow-y:auto;
+}
+
+.list-inbox>li{
+	padding:0px;
+	border-top:1px solid #ddd;
+	margin-bottom:0px
+}
+.list-inbox>li:hover{background-color:#f5f5f5}.list-inbox>li.active{font-weight:bold}.msg-to{width:5%}.msg-sender{width:20%;max-width:200px;text-align:center}.msg-sender .name{display:block;color:#000}.msg-content{text-align:left;line-height:20px;color:#000}.msg-content p,.msg-content a{color:#000}
+
+.no-overflow{overflow:hidden}
+	
+.cadreApp600SansPadding{
+ border-width:2px;
+ border-style:solid;
+ border-color:black; 
+ height:600px;
+ overflow-y:auto;
+}
+
+.cadreApp300SansPadding{
+ border-width:2px;
+ border-style:solid;
+ border-color:black; 
+ height:300px;
+ overflow-y:auto;
+}
+
+.cadreApp350{
+ border-width:2px;
+ border-style:solid;
+ border-color:black;
+ height:350px;
+ overflow-y:auto;
+}
+
+
+.cadreApp300{
+ border-width:2px;
+ border-style:solid;
+ border-color:black;
+ padding: 15px;
+ height:300px;
+ overflow-y:auto;
+}
+
+.cadreApp300Interieur{
+ height:270px;
+ overflow-y:auto;
+}
+
+
+.cadreApp250{
+ border-width:2px;
+ border-style:solid;
+ border-color:black;
+ position: relative;
+ height:250px;
+ overflow-y:auto;
+}
+
+.cadreApp{
+ border-width:2px;
+ border-style:solid;
+ border-color:black;
+ position: relative;
+ overflow-y:auto;
+}
+
+
+.cadreApp35{
+ border-width:2px;
+ border-style:solid;
+ border-color:black;
+ position: relative;
+ height:35px;
+ overflow-y:auto;
+}
+
+.cadreApp50{
+ border-width:2px;
+ border-style:solid;
+ border-color:black;
+ position: relative;
+ height:50px;
+ overflow-y:auto;
+}
+
+.cadreApp200{
+ border-width:2px;
+ border-style:solid;
+ border-color:black;
+ position: relative;
+ height:200px;
+ overflow-y:auto;
+}
+/*
+.cadreApp70:hover{
+  opacity:0.6;
+  background:yellow;
+  border-width:3px;
+  -webkit-box-shadow:inset 0 1px 1px rgba(0,0,0,0.075);
+  box-shadow:inset 0 1px 1px rgba(0,0,0,0.075);
+}*/
+.cadreApp150{
+ border-width:2px;
+ border-style:solid;
+ border-color:black;
+ position: relative;
+ height:150px;
+ overflow-y:auto;
+}
+
+.simpleLabel{
+border:none;
+	padding:6px 0 6px 0;
+	border-radius:8px;
+	background:#d34836;
+	font:bold 13px Arial;
+	color:#fff;
+	text-align: center;
+}
+
+.alignCenter{
+	text-align: center
+}
+.alignRight{
+	text-align: right
+}
+.alignLeft{
+	text-align: left
+}
+.enDessousSeuil{
+	background: #67A256
+}
+.auDessusSeuil{
+	background: #DC7E6B
+}
+.commentdump{
+	padding:5px;
+	margin: 2px;
+	border-radius: 5px;
+}
+
+
+.alignBaseline{
+vertical-align: middle;
+}
+
+.mouselike:hover {
+    cursor: pointer;
+}
+.titre_section{
+	font-weight:bold;
+	font-size: large;
+}
+
+
+.img-download{
+    border-radius: 10px;
+}
+
+.color-black{
+color:black;
+}
+
+.color-grey{
+color:#D8D8D8;
+}
+
+.detail{
+background-image:url('assets/images/info.png');
+width:25px;
+height:25px;
+}
+
+.dlStat{
+background-image:url('assets/images/dlCast.png');
+width:24px;
+height:24px;
+border-radius:12px;
+border: 1px;
+}
+
+.menu-top{
+ font-size:16px;
+}
+
+.corrected_color {
+ color: #01DF01; 
+}
+
+.deleted_color {
+ color: #006600; 
+}
+
+.new_color {
+ color: #A4A4A4; 
+}
+
+.still_violation_color {
+ color: #DF0101; 
+}
+
+.font_legend {
+	font-size: 10px;
+	text-decoration: bold;
+}
+
+.titre_grisee {
+	font-weight: normal;
+    font-size: 12px;
+    font-style: italic;
+    color: #999;
+}
+
+.titre_gras {
+	font-weight: bold;
+    font-size: 14px;    
+}
+.full-width {
+	width: 500px;
+}
+
+.infoBulle {
+background-color: #D8D8D8;
+margin: 0;
+position:fixed;
+}
+.cadrePF{
+ border-width:2px;
+ border-style:solid;
+ border-color:black;
+ position: relative;
+ height:200px;
+ overflow-y:auto;
+}
+.noPadding{
+	padding: 0px;
+}
+.cadrePF-AFP{
+ border-width:1px;
+ border-style:solid;
+ border-color:black;
+ position: relative;
+ padding: 5px;
+ height:180px;
+ overflow-y:auto;
+}
+
+.cadrePF-AFP-detail{
+ border-width:0px;
+ position: relative;
+ padding: 5px;
+ overflow-y:auto;
+}
+
+.cadreSnapshotDetail{
+ border-width:2px;
+ border-style:solid;
+ border-color:black;
+ position: relative;
+ height:100px;
+ overflow-y:auto;
+}
+
+
+.label-file {
+    cursor: pointer;
+    color: #00b1ca;
+    font-weight: bold;
+}
+.label-file:hover {
+    color: #25a5c4;
+}
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

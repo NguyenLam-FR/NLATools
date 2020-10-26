@@ -1,0 +1,79 @@
+<nav class="navbar navbar-default">
+  <div class="container-fluide">
+	<ul class="nav navbar-nav">
+		<li routerLinkActive="active">
+		  <a routerLink="homepageCard">
+			<img 
+			src="../assets/images/logo.png" width="165px" height="40px" /></a></li>
+		<li routerLinkActive="active">
+		  <a routerLink="applications">
+			<img 
+			matTooltip="Liste des apps et leurs plans d'action"
+			matTooltipPosition="left"  
+			matTooltipHideDelay="500"
+			src="../assets/images/actionPlan.svg" alt="action plan" width="40px" height="40px" /></a></li>
+		<li routerLinkActive="active">
+		  <a routerLink="sizingComplexite">
+			<img 
+			matTooltip="tableau listant les applications par complexité"
+			matTooltipPosition="left"  
+			matTooltipHideDelay="500"
+			src="../assets/images/sizing.svg" alt="sizing complexite apps" width="40px" height="40px" /></a></li>
+		<li routerLinkActive="active">
+		  <a routerLink="ruleReferentiel">
+			<img 
+			matTooltip="Référentiel des règles qualité"
+			matTooltipPosition="left"  
+			matTooltipHideDelay="500"
+			src="../assets/images/rules.svg" alt="rules referentiel" width="40px" height="40px" /></a></li>
+		<li routerLinkActive="active">
+		  <a routerLink="manualEntry">
+		    <img 
+			matTooltip="Saisie manuelle"
+			matTooltipPosition="left"  
+			matTooltipHideDelay="500"
+			src="../assets/images/manual.svg" width="40px" height="40px" /></a></li>		  
+		<li routerLinkActive="active">
+		  <a routerLink="extensions">
+			<img 
+			matTooltip="Liste des apps et leurs extensions"
+			matTooltipPosition="left"  
+			matTooltipHideDelay="500"
+			src="../assets/images/extend.svg" width="40px" height="40px" /></a></li>
+		<li routerLinkActive="active">
+		  <a routerLink="statistic-chart">
+			<img 
+			matTooltip="Les graphes de stats sur l'activité"
+			matTooltipPosition="left"  
+			matTooltipHideDelay="500"
+			src="../assets/images/stat.svg"  width="40px" height="40px" /></a></li>
+		<li routerLinkActive="active">
+		  <a routerLink="statistic-table">
+			<img 
+			matTooltip="Stats tableau croisé"
+			matTooltipPosition="left"  
+			matTooltipHideDelay="500"
+			src="../assets/images/statTable.svg"  width="40px" height="40px" /></a></li>
+		<li routerLinkActive="active">
+		  <a routerLink="nomenclature">
+		    <img 
+			matTooltip="Nommenclature"
+			matTooltipPosition="left"  
+			matTooltipHideDelay="500"
+			  src="../assets/images/naming.svg"  width="40px" height="40px" /></a></li>
+		<li routerLinkActive="active">
+		  <a routerLink="scriptSQL">
+			<img 
+			matTooltip="Les requètes SQL"
+			matTooltipPosition="right"  
+			matTooltipHideDelay="500"
+			src="../assets/images/sql.svg" width="40px" height="40px" /></a></li>
+		</ul>	
+  </div>
+</nav>
+<app-application-sous-menu></app-application-sous-menu>
+<div class="container">
+  <div class="row">
+  	<router-outlet></router-outlet>
+  </div>
+</div>

@@ -1,0 +1,44 @@
+<mat-form-field>
+	<mat-label>Filter</mat-label>
+	<input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium">
+</mat-form-field>
+	<mat-icon aria-hidden="false" aria-label="Example home icon" (click)="exportButtonHandler()">
+		text_snippet</mat-icon>
+{{getLibelle()}}&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;Nb règles {{getTypeRule()}}: {{getNbRules()}}&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;Nb total d'objets: {{getTotalCost()}}
+
+<table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+  
+	<ng-container matColumnDef="id_metric">
+	  <th mat-header-cell *matHeaderCellDef mat-sort-header> Metric ID </th>
+      <td mat-cell *matCellDef="let element"> {{element.id_metric}} </td>
+	</ng-container>
+
+	<ng-container matColumnDef="metric_description">
+		<th mat-header-cell *matHeaderCellDef mat-sort-header> Description </th>
+		<td mat-cell *matCellDef="let element"> {{element.metric_description}} </td>
+	</ng-container>
+
+	<ng-container matColumnDef="priority">
+	  <th mat-header-cell *matHeaderCellDef mat-sort-header> priorité </th>
+	  <td mat-cell *matCellDef="let element"> {{element.priority}} </td>
+	</ng-container>
+  
+	<ng-container matColumnDef="criticalViolation">
+		<th mat-header-cell *matHeaderCellDef mat-sort-header> Criticité </th>
+		<td mat-cell *matCellDef="let element"> {{element.criticalViolation}} </td>
+	</ng-container>
+
+	<ng-container matColumnDef="nb_object">
+		<th mat-header-cell *matHeaderCellDef mat-sort-header>  Nb </th>
+        <td mat-cell *matCellDef="let element"> {{element.nb_object}} </td>
+	</ng-container>
+
+	<ng-container matColumnDef="comment_action">
+	  <th mat-header-cell *matHeaderCellDef mat-sort-header> Commentaire </th>
+	  <td mat-cell *matCellDef="let element"> {{element.comment_action}} </td>
+	</ng-container>
+  
+	<tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+	<tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+  <mat-paginator [pageSizeOptions]="[10, 20, 50, 100]" showFirstLastButtons></mat-paginator>

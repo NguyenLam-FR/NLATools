@@ -1,0 +1,79 @@
+<H2>
+	<img src="../assets/images/statTable.svg" width="30px" height="30px" />
+	Analyses réalisées par années</H2>
+<mat-form-field>
+	<mat-label>Filter</mat-label>
+	<input matInput (keyup)="applyFilter($event)" placeholder="recherche">
+</mat-form-field>
+<table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+  
+	<ng-container matColumnDef="name">
+	  <th mat-header-cell *matHeaderCellDef mat-sort-header> Application </th>
+      <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+	</ng-container>      
+
+	<ng-container matColumnDef="a2008">
+		<th mat-header-cell *matHeaderCellDef mat-sort-header> 2008 </th>
+		<td mat-cell *matCellDef="let element"> {{element.a2008}} </td>
+	</ng-container>
+
+	<ng-container matColumnDef="a2010">
+		<th mat-header-cell *matHeaderCellDef mat-sort-header> 2010 </th>
+		<td mat-cell *matCellDef="let element"> {{element.a2010}} </td>
+	</ng-container>
+    
+    <ng-container matColumnDef="a2011">
+		<th mat-header-cell *matHeaderCellDef mat-sort-header> 2011 </th>
+		<td mat-cell *matCellDef="let element"> {{element.a2011}} </td>
+	</ng-container>
+
+    <ng-container matColumnDef="a2012">
+		<th mat-header-cell *matHeaderCellDef mat-sort-header> 2012 </th>
+		<td mat-cell *matCellDef="let element"> {{element.a2012}} </td>
+	</ng-container>
+
+    <ng-container matColumnDef="a2013">
+		<th mat-header-cell *matHeaderCellDef mat-sort-header> 2013 </th>
+		<td mat-cell *matCellDef="let element"> {{element.a2013}} </td>
+	</ng-container>
+
+    <ng-container matColumnDef="a2014">
+		<th mat-header-cell *matHeaderCellDef mat-sort-header> 2014 </th>
+		<td mat-cell *matCellDef="let element"> {{element.a2014}} </td>
+	</ng-container>
+
+    <ng-container matColumnDef="a2015">
+		<th mat-header-cell *matHeaderCellDef mat-sort-header> 2015 </th>
+		<td mat-cell *matCellDef="let element"> {{element.a2015}} </td>
+	</ng-container>
+
+	<ng-container matColumnDef="a2016">
+		<th mat-header-cell *matHeaderCellDef mat-sort-header> 2016 </th>
+		<td mat-cell *matCellDef="let element"> {{element.a2017}} </td>
+	</ng-container>
+
+    <ng-container matColumnDef="a2017">
+		<th mat-header-cell *matHeaderCellDef mat-sort-header> 2017 </th>
+		<td mat-cell *matCellDef="let element"> {{element.a2017}} </td>
+	</ng-container>
+
+    <ng-container matColumnDef="a2018">
+		<th mat-header-cell *matHeaderCellDef mat-sort-header> 2018 </th>
+		<td mat-cell *matCellDef="let element"> {{element.a2018}} </td>
+	</ng-container>
+
+    <ng-container matColumnDef="a2019">
+		<th mat-header-cell *matHeaderCellDef mat-sort-header> 2019 </th>
+		<td mat-cell *matCellDef="let element"> {{element.a2019}} </td>
+	</ng-container>
+
+    <ng-container matColumnDef="a2020">
+		<th mat-header-cell *matHeaderCellDef mat-sort-header> 2020 </th>
+		<td mat-cell *matCellDef="let element"> {{element.a2020}} </td>
+	</ng-container>
+
+
+	<tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+	<tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+  <mat-paginator [pageSizeOptions]="[10, 20, 50, 100]" showFirstLastButtons></mat-paginator>

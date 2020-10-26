@@ -1,0 +1,195 @@
+<h2>
+  <img 	src="../assets/images/sizing.svg" width="30px" height="30px" />
+	Calcul de la complexité</h2>
+<mat-grid-list cols="14" rowHeight="100px">
+    <mat-grid-tile [colspan]=4 >
+        <mat-form-field>
+            <mat-label>Filter</mat-label>
+            <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium">
+          </mat-form-field>
+    </mat-grid-tile>
+    <mat-grid-tile  >
+        <mat-form-field class="example-full-width">
+            <mat-label>LoC</mat-label>
+            <input matInput placeholder="LoC" value="{{refPonderationCC[0].loc}}">
+          </mat-form-field>
+    </mat-grid-tile>
+    <mat-grid-tile  >
+        <mat-form-field class="example-full-width">
+            <mat-label>TQI</mat-label>
+            <input matInput placeholder="TQI" value="{{refPonderationCC[0].tqi}}">
+          </mat-form-field>
+    </mat-grid-tile>
+    <mat-grid-tile  >
+        <mat-form-field class="example-full-width">
+            <mat-label>VHCC</mat-label>
+            <input matInput placeholder="VHCC" value="{{refPonderationCC[0].vhcc}}">
+          </mat-form-field>
+    </mat-grid-tile>
+    <mat-grid-tile  >
+        <mat-form-field class="example-full-width">
+            <mat-label>HCC</mat-label>
+            <input matInput placeholder="HCC" value="{{refPonderationCC[0].hcc}}">
+          </mat-form-field>
+    </mat-grid-tile>
+    <mat-grid-tile  >
+        <mat-form-field class="example-full-width">
+            <mat-label>ACC</mat-label>
+            <input matInput placeholder="ACC" value="{{refPonderationCC[0].acc}}">
+          </mat-form-field>
+    </mat-grid-tile>
+    <mat-grid-tile  >
+        <mat-form-field class="example-full-width">
+            <mat-label>LCC</mat-label>
+            <input matInput placeholder="LCC" value="{{refPonderationCC[0].lcc}}">
+          </mat-form-field>
+    </mat-grid-tile>
+    <mat-grid-tile  >
+        <mat-form-field class="example-full-width">
+            <mat-label>VHFO</mat-label>
+            <input matInput placeholder="VHFO" value="{{refPonderationCC[0].vhfo}}">
+          </mat-form-field>
+    </mat-grid-tile>
+    <mat-grid-tile  >
+        <mat-form-field class="example-full-width">
+            <mat-label>HFO</mat-label>
+            <input matInput placeholder="HFO" value="{{refPonderationCC[0].hfo}}">
+          </mat-form-field>
+    </mat-grid-tile>
+    <mat-grid-tile  >
+        <mat-form-field class="example-full-width">
+            <mat-label>AFO</mat-label>
+            <input matInput placeholder="afo" value="{{refPonderationCC[0].afo}}">
+          </mat-form-field>
+    </mat-grid-tile>
+    <mat-grid-tile  > 
+        <mat-form-field class="example-full-width">
+        <mat-label>LFO</mat-label>
+        <input matInput placeholder="LFO" value="{{refPonderationCC[0].lfo}}">
+      </mat-form-field>
+    </mat-grid-tile>
+  </mat-grid-list>
+
+<table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+  <ng-container matColumnDef="name">
+	<th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
+	<td mat-cell *matCellDef="let element"> {{element.name}}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="last_version_analyzed">
+	<th mat-header-cell *matHeaderCellDef mat-sort-header> Version </th>
+	<td mat-cell *matCellDef="let element"> {{element.last_version_analyzed}} </td>
+  </ng-container>
+  
+  <ng-container matColumnDef="loc">
+	<th mat-header-cell *matHeaderCellDef mat-sort-header>Loc</th>
+	<td mat-cell *matCellDef="let element"> {{element.loc}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="tqi">
+    <th 
+      matTooltip="Technical Quality Index"
+	  matTooltipPosition="left"  
+      matTooltipHideDelay="500"mat-header-cell *matHeaderCellDef mat-sort-header> 
+      TQI <br>
+      {{refPonderationCC[0].tqi}}</th>
+	<td mat-cell *matCellDef="let element"> {{element.tqi}} </td>
+  </ng-container>
+  
+  <ng-container matColumnDef="vhcc">
+    <th 
+      matTooltip="Very High Cyclomatic Complexity"
+	  matTooltipPosition="left"  
+      matTooltipHideDelay="500"
+      mat-header-cell *matHeaderCellDef mat-sort-header> 
+      VHCC <br>
+      {{refPonderationCC[0].vhcc}}</th>
+    <td mat-cell *matCellDef="let element"> {{element.vhcc}} </td>
+  </ng-container>
+    
+  <ng-container matColumnDef="hcc">
+    <th 
+      matTooltip="High Cyclomatic Complexity"
+	  matTooltipPosition="left"  
+      matTooltipHideDelay="500"
+      mat-header-cell *matHeaderCellDef mat-sort-header> HCC </th>
+    <td mat-cell *matCellDef="let element"> {{element.hcc}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="acc">
+    <th 
+    matTooltip="Average Cyclomatic Complexity"
+	matTooltipPosition="left"  
+    matTooltipHideDelay="500"
+    mat-header-cell *matHeaderCellDef mat-sort-header> ACC </th>
+    <td mat-cell *matCellDef="let element"> {{element.acc}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="lcc">
+    <th 
+    matTooltip="Low Cyclomatic Complexity"
+	matTooltipPosition="left"  
+    matTooltipHideDelay="500"
+    mat-header-cell *matHeaderCellDef mat-sort-header> LCC </th>
+    <td mat-cell *matCellDef="let element"> {{element.lcc}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="vhfo">
+    <th 
+      matTooltip="Very High Fan Out"
+	  matTooltipPosition="left"  
+      matTooltipHideDelay="500"
+      mat-header-cell *matHeaderCellDef mat-sort-header> VHFO </th>
+    <td mat-cell *matCellDef="let element"> {{element.vhfo}} </td>
+  </ng-container>
+    
+  <ng-container matColumnDef="hfo">
+    <th 
+      matTooltip="High Fan Out"
+	  matTooltipPosition="left"  
+      matTooltipHideDelay="500"
+      mat-header-cell *matHeaderCellDef mat-sort-header> HFO </th>
+    <td mat-cell *matCellDef="let element"> {{element.hfo}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="afo">
+    <th 
+    matTooltip="Average Fan Out"
+	matTooltipPosition="left"  
+    matTooltipHideDelay="500"
+    mat-header-cell *matHeaderCellDef mat-sort-header> AFO </th>
+    <td mat-cell *matCellDef="let element"> {{element.afo}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="lfo">
+    <th 
+    matTooltip="Low Fan Out"
+	matTooltipPosition="left"  
+    matTooltipHideDelay="500"
+    mat-header-cell *matHeaderCellDef mat-sort-header> LFO </th>
+    <td mat-cell *matCellDef="let element"> {{element.lfo}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="fp">
+    <th 
+    matTooltip="Function Points"
+	matTooltipPosition="left"  
+    matTooltipHideDelay="500"
+    mat-header-cell *matHeaderCellDef mat-sort-header> FP </th>
+    <td mat-cell *matCellDef="let element"> {{element.fp}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="total">
+    <th 
+    matTooltip="Function Points"
+	matTooltipPosition="left"  
+    matTooltipHideDelay="500"
+    mat-header-cell *matHeaderCellDef mat-sort-header> total </th>
+    <td mat-cell *matCellDef="let element"> {{element.total}} </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+</table>
+<mat-paginator [pageSizeOptions]="[10, 20, 50, 100]" showFirstLastButtons></mat-paginator>

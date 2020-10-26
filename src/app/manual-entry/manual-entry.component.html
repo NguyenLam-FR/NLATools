@@ -1,0 +1,34 @@
+<h2>
+	<img src="../assets/images/manual.svg" width="30px" height="30px" />
+	Applications avec données manuelles</h2>
+<mat-form-field>
+	<mat-label>Filter</mat-label>
+	<input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium">
+</mat-form-field>
+	
+<table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+  
+	<ng-container matColumnDef="name">
+	  <th mat-header-cell *matHeaderCellDef mat-sort-header> Application </th>
+      <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+	</ng-container>
+
+	<ng-container matColumnDef="domaine_metier">
+		<th mat-header-cell *matHeaderCellDef mat-sort-header> Domaine </th>
+		<td mat-cell *matCellDef="let element"> {{element.domaine_metier}} </td>
+	</ng-container>
+
+	<ng-container matColumnDef="prestataire">
+	  <th mat-header-cell *matHeaderCellDef mat-sort-header> prestataire </th>
+	  <td mat-cell *matCellDef="let element"> {{element.prestataire}} </td>
+	</ng-container>
+  
+	<ng-container matColumnDef="tma">
+		<th mat-header-cell *matHeaderCellDef mat-sort-header> Tma </th>
+		<td mat-cell *matCellDef="let element"> {{element.tma}} </td>
+	</ng-container>
+  
+	<tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+	<tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+  <mat-paginator [pageSizeOptions]="[10, 20, 50, 100]" showFirstLastButtons></mat-paginator>

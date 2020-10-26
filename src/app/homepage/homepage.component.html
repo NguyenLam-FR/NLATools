@@ -1,0 +1,146 @@
+<div class="col-sm-12">
+  <a routerLink="/applications">
+  <mat-card class="col-sm-4 example-card">
+    <mat-card-header>
+      <mat-card-title>Les plans d'action</mat-card-title>
+      <mat-card-subtitle>Applications et plan d'action</mat-card-subtitle>
+    </mat-card-header>
+    <img mat-card-image width="100px" height="100px" src="../../assets/images/actionPlan.svg" alt="Photo of a Shiba Inu">
+    <mat-card-content>
+      <p>
+        Liste les applications et leur plan d'action pour les différents outils CAST, SonarQube et CheckmarX.
+      </p>
+    </mat-card-content>
+  </mat-card>
+  </a>
+
+  <a routerLink="/sizingComplexite">
+  <mat-card class="col-sm-4 example-card">
+    <mat-card-header>
+      <mat-card-title>Complexité des applications</mat-card-title>
+      <mat-card-subtitle>PF * CC * LoC * TQI</mat-card-subtitle>
+    </mat-card-header>
+    <img mat-card-image width="100px" height="100px" src="../../assets/images/sizing.svg" alt="Photo of a Shiba Inu">
+    <mat-card-content>
+      <p>
+        La valeur de complexité d’application est calculée à partir des audits effectués avec l’outil Cast AIP .
+        A partir de ces calculs, le ministère a choisi deux seuils permettant de catégoriser les applications en complexité simple, moyenne ou élevée.
+        Ces seuils donnent des points de repère dans la liste de ces valeurs pour le portefeuille du ministère, et permettront d’évaluer la position des applications.
+      </p>
+    </mat-card-content>
+  </mat-card>
+  </a>
+
+  <a routerLink="/ruleReferentiel">
+  <mat-card class="col-sm-4 example-card">
+    <mat-card-header>
+      <mat-card-title>Les règles Qualité</mat-card-title>
+      <mat-card-subtitle>Cast / Sonar / CheckmarX</mat-card-subtitle>
+    </mat-card-header>
+    <img mat-card-image width="100px" height="100px" src="../../assets/images/rules.svg" alt="Photo of a Shiba Inu">
+    <mat-card-content>
+      <ul class="list-group col-sm-12">
+        <li class="list-group-item">
+          <div id="columnNbRulePerTool" style="min-width: 290px; max-width: 100%; height: 120px; margin: 0 auto"></div>
+        </li>
+      </ul>
+    </mat-card-content>
+  </mat-card>
+  </a>
+</div>
+
+
+<div class="col-sm-12">
+  
+  <a  [routerLink]="['/manualEntry']">   
+    <mat-card class="col-sm-4 example-card">
+      <mat-card-header>
+        <mat-card-title>Saisie manuelle</mat-card-title>
+        <mat-card-subtitle>Cast</mat-card-subtitle>
+      </mat-card-header>
+        <img mat-card-image width="100px" height="100px" src="../../assets/images/manual.svg" alt="les extensions CAST">
+        <mat-card-content>
+        <p>
+          Les données manuelles saisi sur Excel.
+        </p>
+      </mat-card-content>
+    </mat-card>
+  </a>
+
+  <a [routerLink]="['/extensions']">
+  <mat-card class="col-sm-4 example-card">
+    <mat-card-header>
+      <mat-card-title>Les extensions CAST</mat-card-title>
+      <mat-card-subtitle>Cast</mat-card-subtitle>
+    </mat-card-header>
+      <img mat-card-image width="100px" height="100px" src="../../assets/images/extend.svg" alt="les extensions CAST">
+      <mat-card-content>
+      <p>
+        Les extensions utilisées sont présentés par application.
+      </p>
+    </mat-card-content>
+  </mat-card>
+  </a>
+
+  <a [routerLink]="['/statistic-chart']">
+  <mat-card class="col-sm-4 example-card">
+    <mat-card-header>
+      <mat-card-title>Overview Activité</mat-card-title>
+      <mat-card-subtitle>Graphes et Historique</mat-card-subtitle>
+    </mat-card-header>
+    <img mat-card-image width="100px" height="100px" src="../../assets/images/stat.svg" alt="Photo of a Shiba Inu">
+    <mat-card-content>
+      <p>
+        Un ensemble de graphe donne une visibilité de l'activité de la cellule Jacinte.
+      </p>
+    </mat-card-content>
+  </mat-card>
+</a>
+ </div>
+
+<div class="col-sm-12">
+  <a [routerLink]="['/statistic-table']">
+    <mat-card class="col-sm-4 example-card">
+    <mat-card-header>
+      <mat-card-title>Stat tableau croisé app X années</mat-card-title>
+    <mat-card-subtitle>Reporting</mat-card-subtitle>
+    </mat-card-header>
+    <img mat-card-image width="100px" height="100px" src="../../assets/images/statTable.svg" alt="Photo of a Shiba Inu">
+    <mat-card-content>
+      <p>
+        les analyses réalisées par années.
+      </p>
+    </mat-card-content>
+  </mat-card>
+</a>
+  <a [routerLink]="['/nomenclature']">
+    <mat-card class="col-sm-4 example-card">
+    <mat-card-header>
+      <mat-card-title>Nomenclature</mat-card-title>
+    <mat-card-subtitle>Nommage et bonnes pratiques</mat-card-subtitle>
+    </mat-card-header>
+    <img mat-card-image width="100px" height="100px" src="../../assets/images/naming.svg" alt="Photo of a Shiba Inu">
+    <mat-card-content>
+      <p>
+        les règles de nommages et bonnes pratiques à mettre en oeuvre dans le cadre de l'utilisation de la plateforma CAST AIP sont répertoriés ici.
+      </p>
+    </mat-card-content>
+  </mat-card>
+</a>
+
+<a [routerLink]="['/scriptSQL']">
+  <mat-card class="col-sm-4 example-card">
+    <mat-card-header>
+      <mat-card-title>SQL</mat-card-title>
+      <mat-card-subtitle>Requêtes SQL utiles</mat-card-subtitle>
+    </mat-card-header>
+    <img mat-card-image width="100px" height="100px" src="../../assets/images/sql.svg" alt="Photo of a Shiba Inu">
+    <mat-card-content>
+      <p>
+        Les requêtes SQL sont utilisées par l'administrateur de CAST AIP.
+      </p>
+    </mat-card-content>
+  </mat-card>
+</a>
+
+</div>

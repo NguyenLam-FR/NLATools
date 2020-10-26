@@ -1,0 +1,22 @@
+<!-- OBSOLETE TO DELETE -->
+<li class="list-group-item">
+  	  <h4>
+  	  	{{ name }}    
+  	  	<a [routerLink]="['/applicationIdentity',id]"><img src="../assets/images/appId.svg" width="25px" height="20px" /></a>  
+  	    <a [routerLink]="['/applicationActionPlan',id,1]"><img src="../assets/images/actionPlanCast.svg" width="25px" height="20px" /></a></h4>
+	  <div class="col-sm-1">{{ last_update }}</div>
+	  <div class="col-sm-3">
+	    <div class="col-sm-7">{{ central_base }}</div>
+	    <div class="col-sm-2">{{ server_name }}</div>
+	  	<div class="col-sm-3">{{ cast_version }}</div>
+	  </div>
+	  <div class="col-sm-5">
+	    <div class="col-sm-6">{{ last_version_analyzed }}</div>
+	  </div>
+	  <div class="col-sm-3">
+ 	    <div class="col-sm-6">{{ date_snapshot }}</div>
+  	    <div class="col-sm-3">..</div>
+  	    <div class="col-sm-3">..</div>
+  	  </div>
+  	  <br>
+  </li>

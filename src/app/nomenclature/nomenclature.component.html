@@ -1,0 +1,106 @@
+<h2>
+	<img src="../assets/images/naming.svg" width="30px" height="30px" />
+	Les règles de nommages</h2>
+<div class="col-xs-6">Les versions doivent s'appeler:</div>
+			<div class="col-xs-6">V</div>						
+    		<div class="col-xs-6">Les proc&eacute;dures SQL modifi&eacute;es sont pr&eacute;fix&eacute; avec: </div>
+			<div class="col-xs-6">mdlj</div>						
+    
+<H2>Process</H2>
+- back up des sources pr&eacute;c&eacute;dentes<br>
+- back up des bases avant PA <br>
+- back up des bases apr&eacute;s PA<br>
+<H2>DMT</H2>
+Pour les packages JAVA:<br>
+Folders or files to ignore:<br>
+\\test$<br>
+\.txt$|\.gif$|\.ico$|\.png$|\.tmp$|\.svntmp$|\.odt$|\.lost$|\.thmx$<br>
+\.git$<br>
+\.zip$|\.class$|\.exe$|\.dll$|\.gitignore$|\.cnv$|\.coffee$|\.csv$|\.dat$|\.less$|\.nn$<br>
+\.pdf$|\.pdn$|\.ppi$|\.profile$|\.raw$|\.ser$|\.size$|\.traineddata$|\.TXT$<br>
+\.ico$|\.gif$|\.bmp$|\.JPG$|\.png$<br>
+\\.settings\\|\\test\\|\\META-INF\\<br>
+<H2>R&egrave;gles de nommage pour les plans d'action</H2>
+	<ul class="list list-inbox content">
+		<li class="no-overflow cursor js-conversation">
+			<div class="col-xs-6">%[MJ SUSPENDU]%</div>
+			<div class="col-xs-2">MJ SUSPENDU</div>						
+			<div class="col-xs-4">C'est un faux positif sur le dashboard qui provient d'un bug </div>						
+    </li>
+		<li class="no-overflow cursor js-conversation">
+			<div class="col-xs-6">%[MJ NON CORRECTION JUSTIFIEE]% OU %[INTENTIONNEL]%</div>
+			<div class="col-xs-2">INTENTIONNEL</div>	
+			<div class="col-xs-4">C'est un faux positif ou une erreur identifi&eacute;e qui ne sera pas corrig&eacute;e</div>	
+    </li>
+		<li class="no-overflow cursor js-conversation">
+			<div class="col-xs-6">not like %[MJ %]% and not like %MOE MJ%</div>
+			<div class="col-xs-2">PRESTATAIRE</div>	
+			<div class="col-xs-4">PA &agrave; corriger par le prestataire</div>	
+    </li>
+		<li class="no-overflow cursor js-conversation">
+			<div class="col-xs-6">%[MAJ %]%and vap.action_def like ''%MOE MJ%'</div>
+			<div class="col-xs-2">MOE MJ</div>	
+			<div class="col-xs-4">PA &agrave; corriger par le prestataire</div>	
+				
+    </li>
+  </ul>
+  
+<H2>Nommage pour les dumps</H2>
+<ul class="list list-inbox content">
+	<li class="no-overflow cursor js-conversation">
+		<div class="col-xs-12"> YYYYMMDD - ETAT - &lsaquo;numero&rsaquo; - &lsaquo;versionApp&rsaquo; - &lsaquo;ENV&rsaquo; - &lsaquo;VersionAIP&rsaquo; - &lsaquo;Commentaire&rsaquo;</div>
+    </li>
+</ul>
+<div>Numero: correspond &Agrave; l'&eacute;tat du snapshot sauvegard&eacute; peut prendre les valeurs: 1, 2 ou 3 uniquement  </div>
+<div>VersionApp: correspond au num&eacute;ro de version tel que mention&eacute;  dans le git</div>
+<div>ENV: environnement de travail peut prendre les valeurs dev ou prod </div>
+<div>Version: correspond &agrave; la version</div>
+<div>Commentaire: champ libre</div>
+
+ <H2>Status violations (valeurs possible dans la table action_plan.status)</H2>
+- NEW<br>
+- STILL_VIOLATION <br>
+- CORRECTED<br>
+- TOTAL<br>
+- EXCLUDED <br>
+
+<h2>les annotations pour les analysis units</h2>
+Lors du "run" final penser a supprimer les annotations dans les analysis units !
+une requete utile pour supprimer toutes les annotations des analysis unit :update cms_j2ee_analysis set exectag = null;
+
+<h2>Nommage des applications </h2>
+Le noms des applications doit etre en majuscule.
+
+
+<h2>nomenclature du H:/source</h2>
+- supprimer le nom de l'appli si possible pour r&eacute;duire le chemin dans le file system. <br>
+- mettre les SQL dans h:/sources/DDL<br>
+<h2>Priorité pour les plans d'action</h2>
+<div>
+	<div class="col-xs-4">Priority</div><div class="col-xs-4">xxx</div><div class="col-xs-4">yyy</div>
+	<div class="col-xs-4"> -  </div><div class="col-xs-4">1 - Extreme</div><div class="col-xs-4">0 - Verify</div>
+	<div class="col-xs-4"> -  </div><div class="col-xs-4">2 - High</div><div class="col-xs-4">1 - Not exploitable</div>
+	<div class="col-xs-4"> -  </div><div class="col-xs-4">3 - Moderate</div><div class="col-xs-4">2 - Confirmed</div>
+	<div class="col-xs-4"> -  </div><div class="col-xs-4">4 - Low</div><div class="col-xs-4">3 - Urgent</div>
+</div>
+<h2>Criticit&eacute; pour les plans d'action</h2>
+<div>
+	<div class="col-xs-4">Criticit&eacute;</div><div class="col-xs-4">xxx</div><div class="col-xs-4">yyy</div>
+	<div class="col-xs-4"> -  </div><div class="col-xs-4">1 - Critical</div><div class="col-xs-4">Info</div>
+	<div class="col-xs-4"> -  </div><div class="col-xs-4">0 - Not critical</div><div class="col-xs-4">Low</div>
+	<div class="col-xs-4"> -  </div><div class="col-xs-4"></div><div class="col-xs-4">Medium</div>
+	<div class="col-xs-4"> -  </div><div class="col-xs-4"></div><div class="col-xs-4">High</div>
+</div>
+
+<h2>analyseur PHP</h2>
+penser à vider le répertoire C:\Users\Administrateur\.pdepend après analyse php.<br>
+emplacement du parametre pdepend si on veut le changer<br>
+1. Go to the installation directory where you have installed PHP. In my case its in C:\php<br>
+2. Go to the folder C:\[installation folder of PHP]\pear\PHP\Depend\Util\Configuration - In my case its C:\php\pear\PHP\Depend\Util\Configuration<br>
+3. Open the file Factory.php in edit mode.<br>
+4. Change the line number 107  - <br>
+$this->default->cache->location = $home . '/.pdepend'; <br>
+as follows $this->default->cache->location = 'Q:/Q/DMT/.pdepend [The location of your choice]';<br>
+
+<h2>framework symfony</h2>
+Pour les applications symfony, regarder dans la configuration  pour reprendre les ref Pattern à appliqué pour avoir les liens manquants.<br>
